@@ -1,8 +1,6 @@
 import React from "react";
 import "../styles/footer.scss";
 
-import Logo from "../assets/logo.jpeg";
-
 function Footer() {
   return (
     <footer className="w-full bg-black p-2 mt-14">

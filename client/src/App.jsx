@@ -1,35 +1,52 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "./assets/react.svg";
+// import { Routes, Route } from "react-router-dom";
+import { useQuery, gql } from "@apollo/client";
+import { useEffect } from "react";
 import "./App.css";
+import Landing from "./pages/Landing";
+import Gallery from "./pages/Gallery";
+import Mural from "./pages/Mural";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+
+import { loadErrorMessages, loadDevMessages } from "@apollo/client/dev";
+
+if (process.env.NODE_ENV === "development") {
+  // Adds messages only in a development environment
+  loadDevMessages();
+  loadErrorMessages();
+}
+// import { useStoreContext } from "./utils/store";
+
+import { QUERY_AUTHENTICATE } from "../src/utils/queries";
 
 function App() {
-  const [count, setCount] = useState(0);
+  // const [state, dispatch] = useStoreContext();
 
+  const { loading, error, data: userData } = useQuery(QUERY_AUTHENTICATE);
+
+  useEffect(() => {
+    if (userData) {
+      dispatch({
+        type: UPDATE_USER,
+        user: userData.authenticate,
+      });
+    }
+  }, [userData]);
+
+  // add loading later
   return (
+    //   <h3 className="d-flex justify-content-center align-items-center vh-100">
+    //     Loading...
+    //   </h3>
+    // ) : (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <img src="client/src/assets/Eudora pic.jpeg" alt="test" />
-        <img src="client/src/assets/Logo.jpeg" alt="test" />
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <Header />
+      <main>
+        <Landing />
+        <Mural />
+        <Gallery />
+      </main>
+      <Footer />
     </>
   );
 }
