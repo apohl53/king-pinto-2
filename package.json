@@ -12,11 +12,14 @@
   "dependencies": {
     "@apollo/client": "^3.9.5",
     "@headlessui/react": "^1.7.18",
+    "apollo-server-express": "^3.13.0",
+    "dotenv": "^16.4.5",
     "graphql": "^16.8.1",
     "nodemon": "^3.0.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.22.1"
+    "react-router-dom": "^6.22.1",
+    "stripe": "^14.17.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.55",
