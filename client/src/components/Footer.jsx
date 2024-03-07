@@ -9,8 +9,8 @@ function Footer() {
         <div className="mb-4 md:mb-0 text-center md:text-left">
           <h3 className="underline">Contact:</h3>
           <ul>
-            <li>Phone: (555)-657-8965</li>
-            <li>Email: urbanvogue@gmail.com</li>
+            <p>Phone: (555)-657-8965</p>
+            <p>Email: urbanvogue@gmail.com</p>
           </ul>
         </div>
 

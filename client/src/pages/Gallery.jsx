@@ -7,7 +7,7 @@ export default function Gallery() {
       style={{
         padding: "10px",
         width: "100%",
-        backgroundImage: "/client/src/assets/stock1.jpg",
+        
         backgroundRepeat: "no-repeat",
       }}
       className="flex flex-col min-h-screen"
@@ -28,11 +28,6 @@ export default function Gallery() {
           alt="Artwork 3"
           className="aspect-content object-cover rounded-lg overflow-hidden"
           src="/client/src/assets/art2.jpg"
-        />
-        <img
-          alt="Artwork 4"
-          className="aspect-content object-cover rounded-lg overflow-hidden"
-          src="/client/src/assets/stock1.jpg"
         />
         <img
           alt="Artwork 5"
