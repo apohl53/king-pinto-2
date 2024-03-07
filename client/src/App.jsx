@@ -1,12 +1,15 @@
-// import { Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { useQuery, gql } from "@apollo/client";
 import { useEffect } from "react";
 import "./App.css";
+import { UPDATE_USER } from "./utils/actions";
+import Auth from "./pages/Auth";
 import Landing from "./pages/Landing";
-import Gallery from "./pages/Gallery";
-import Mural from "./pages/Mural";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import Products from "./pages/Products";
+import ProductDetails from "./pages/ProductDetails";
+import OrderProcessed from "./pages/OrderProcessed";
 
 import { loadErrorMessages, loadDevMessages } from "@apollo/client/dev";
 
@@ -15,12 +18,12 @@ if (process.env.NODE_ENV === "development") {
   loadDevMessages();
   loadErrorMessages();
 }
-// import { useStoreContext } from "./utils/store";
+import { useStoreContext } from "./utils/store";
 
 import { QUERY_AUTHENTICATE } from "../src/utils/queries";
 
 function App() {
-  // const [state, dispatch] = useStoreContext();
+  const [state, dispatch] = useStoreContext();
 
   const { loading, error, data: userData } = useQuery(QUERY_AUTHENTICATE);
 
@@ -42,9 +45,18 @@ function App() {
     <>
       <Header />
       <main>
-        <Landing />
-        <Mural />
-        <Gallery />
+        <Routes>
+          <Route path="/" element={<Landing />} />
+          {/* <Route path="/products" element={<Products />} />
+          <Route path="/products/:id" element={<ProductDetails />} /> */}
+
+          <Route path="/register" element={<Auth isLogin={false} />} />
+          <Route path="/login" element={<Auth isLogin={true} />} />
+          {/* <Route path="/order-history" element={<OrderHistory />} /> */}
+          {/* <Route path="/success" element={<OrderProcessed />} /> */}
+
+          {/* <Route path="*" element={<NotFound />} /> */}
+        </Routes>
       </main>
       <Footer />
     </>

@@ -1,4 +1,4 @@
-import { NavLink, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useMutation, gql } from "@apollo/client";
 import { UPDATE_USER } from "../utils/actions";
 import { REGISTER, LOGIN } from "../utils/mutations";
@@ -17,6 +17,7 @@ const initialFormData = {
 function Auth({ isLogin }) {
   const [, dispatch] = useStoreContext();
   const [formData, setFormData] = useState(initialFormData);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -35,8 +36,9 @@ function Auth({ isLogin }) {
     e.preventDefault();
 
     try {
-      const resolverName = isLogin ? "login" : "register";
+      setLoading(true); // Set loading to true when form submission begins
 
+      const resolverName = isLogin ? "login" : "register";
       const { data: userData } = await authenticateUser();
 
       setFormData({ ...initialFormData });
@@ -47,10 +49,18 @@ function Auth({ isLogin }) {
       });
 
       setErrorMessage("");
-      navigate("/");
+      if (isLogin) {
+        // Redirect after successful login
+        navigate("/");
+      } else {
+        // Redirect after successful registration
+        navigate("/register");
+      }
     } catch (err) {
-      console.log(err.message);
+      console.error(err.message);
       setErrorMessage(err.message);
+    } finally {
+      setLoading(false);
     }
   };
 
