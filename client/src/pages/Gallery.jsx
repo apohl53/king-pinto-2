@@ -7,7 +7,6 @@ export default function Gallery() {
       style={{
         padding: "10px",
         width: "100%",
-        backgroundColor: "black",
         backgroundRepeat: "no-repeat",
         color: "green"
       }}

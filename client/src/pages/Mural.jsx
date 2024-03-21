@@ -5,7 +5,6 @@ export default function Mural() {
     <section
       id="mural"
       style={{ padding: "10px", 
-      backgroundColor: "black",
     color: "yellow"}}
       
       className="flex flex-col min-h-screen"
